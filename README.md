@@ -1,0 +1,1 @@
+# A flix application designed to evaluate movie ratings.
