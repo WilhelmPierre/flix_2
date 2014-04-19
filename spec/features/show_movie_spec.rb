@@ -1,7 +1,7 @@
-require  'spec_helper'
+require 'spec_helper'
 
-describe "Viewing an individual movie" do
-   it "shows the movie's details" do
+describe " Viewing an individual movie" do
+ it "shows the movie's details" do
   movie = Movie.create(title: "Iron Man",
                        rating: "PG-13",
                        total_gross: 318412101.00,
@@ -15,7 +15,5 @@ describe "Viewing an individual movie" do
   expect(page).to have_text("$318,412,101.00")
   expect(page).to have_text(movie.description)
   expect(page).to have_text(movie.released_on)
-  
   end
-	
 end
