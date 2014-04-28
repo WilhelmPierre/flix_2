@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Flix2</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <title>Super-Heroic Flix</title>
+  ...
 </head>
 <body>
 
+<header style="padding: 5px; color: #F0F0F0; background: #237CBE;">
+  <h1>Flix</h1>
+</header>
+
+<aside style="float: right; background: #F0F0F0; width: 200px;">
+  <nav>
+    <ul>
+      <li>
+        <%= link_to 'All Movies', movies_path %>
+      </li>
+      <li>
+        <%= link_to 'Add New Movie', new_movie_path %>
+      </li>
+    </ul>
+  </nav>
+</aside>
+  
 <%= yield %>
+
+<footer style="text-align: center; padding: 5px; color: #237CBE; background: #F0F0F0">
+  <p>
+    Copyright &copy; 2013 by Wilhelm P.
+  </p>
+</footer>
 
 </body>
 </html>
