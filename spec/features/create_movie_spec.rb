@@ -1,34 +1,27 @@
 require 'spec_helper'
 
-describe "Viewing an individual movie" do
-  it "shows the movie's details" do
-    movie = Movie.create(movie_attributes)
+describe "Creating a new movie" do 
+  it "saves the movie and shows the new event's details" do    
+    visit movies_url
+    
+    click_link 'Add New Movie'
+    
+    expect(current_path).to eq(new_movie_path)
+    
+    fill_in "Title", with: "New Movie Title"
+    fill_in "Description", with: "Superheroes saving the world from villains"
+    fill_in "Rating", with: "PG-13"
+    fill_in "Total gross", with: "75000000"
+    select (Time.now.year - 1).to_s, :from => "movie_released_on_1i"
+    fill_in "Cast", with: "The award-winning cast"
+    fill_in "Director", with: "The ever-creative director"
+    fill_in "Duration", with: "123 min"
+    fill_in "Image file name", with: "movie.png"
+            
+    click_button 'Create Movie'
 
-    visit movie_url(movie)
-
-    expect(page).to have_text(movie.title)
-    expect(page).to have_text(movie.rating)
-    expect(page).to have_text(movie.description)
-    expect(page).to have_text(movie.released_on)
-    expect(page).to have_text(movie.cast)
-    expect(page).to have_text(movie.director)
-    expect(page).to have_text(movie.duration)
-    expect(page).to have_selector(("img[src$='#{movie.image_file_name}']"))
-  end  
-  
-  it "shows the total gross if the total gross exceeds $50M" do
-    movie = Movie.create(movie_attributes(total_gross: 60000000))
-
-    visit movie_url(movie)
-
-    expect(page).to have_text("$60,000,000.00")
-  end
-
-  it "shows 'Flop!' if the total gross is less than $50M" do
-    movie = Movie.create(movie_attributes(total_gross: 40000000))
-
-    visit movie_url(movie)
-
-    expect(page).to have_text("Flop!")
+    expect(current_path).to eq(movie_path(Movie.last))   
+    
+    expect(page).to have_text('New Movie Title')
   end
 end
